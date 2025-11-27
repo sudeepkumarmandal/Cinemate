@@ -8,7 +8,7 @@ export const AllRoutes = () => {
     <>
     <Routes>
         <Route path="/" element={<MoveList/>}/>
-        <Route path="/movie/:id" element={<MoveDetails/>}/>
+        <Route path="/movies/:id" element={<MoveDetails/>}/>
         <Route path="/movies/popular" element={<MoveList/>}/>
         <Route path="/movies/top" element={<MoveList/>}/>
         <Route path="movies/upcomming" element={<MoveList/>}/>
