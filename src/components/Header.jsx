@@ -1,17 +1,29 @@
 import { Link, NavLink } from "react-router-dom";
+import { Moon , Sun} from "lucide-react";
 import logo from "../assets/logo.png";
-import { useState } from "react";
+import { useState ,useEffect } from "react";
+
 export const Header = () => {
   const [hidden, setHidden] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
+     
+  useEffect(() => {
+  if (darkMode) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+}, [darkMode]);
+
   const activeClass =
-    "block py-2 px-3 text-blue-800 bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0";
+    `block py-2 px-3 text-blue-800 bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0 `;
   const inActiveClass =
-    "block py-2 px-3 text-grey-800 bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0";
+    `block py-2 px-3 text-grey-800 bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0 `;
 
   return (
     <header>
-      <nav className="bg-neutral-primary w-full z-20 top-0 start-0 border-b border-default">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <nav className=" w-full z-20 top-0 start-0 border-b border-default">
+        <div className="max-w-screen-7xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link
             to="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -23,7 +35,8 @@ export const Header = () => {
           </Link>
 
           <div className="flex items-center md:order-2">
-            <button  onClick={() => setHidden(!hidden)}
+            <button
+              onClick={() => setHidden(!hidden)}
               type="button"
               data-collapse-toggle="navbar-search"
               aria-controls="navbar-search"
@@ -45,10 +58,6 @@ export const Header = () => {
               </svg>
               <span className="sr-only">Search</span>
             </button>
-
-            <label htmlFor="input-group-1" className="sr-only">
-              Your Email
-            </label>
 
             <div className="relative hidden md:block">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -99,6 +108,12 @@ export const Header = () => {
                 />
               </svg>
             </button>
+
+            <button onClick={()=>setDarkMode(!darkMode)}>
+               {
+                darkMode ? (  <Moon className="ml-8" />) : (<Sun className="ml-8" />)
+                }
+            </button>
           </div>
 
           <div
@@ -137,7 +152,7 @@ export const Header = () => {
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
-                    isActive ? activeClass : inActiveClass
+                    isActive ? activeClass : inActiveClass 
                   }
                   end
                 >
