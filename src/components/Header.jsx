@@ -1,24 +1,39 @@
-import { Link, NavLink } from "react-router-dom";
-import { Moon , Sun} from "lucide-react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Moon, Sun } from "lucide-react";
 import logo from "../assets/logo.png";
-import { useState ,useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export const Header = () => {
+  const desktopRef = useRef("");
   const [hidden, setHidden] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
-     
+  const navigate = useNavigate();
   useEffect(() => {
-  if (darkMode) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+//first render focus
+  useEffect(() => {
+  if (desktopRef.current) {
+    desktopRef.current.focus();
   }
-}, [darkMode]);
+}, []);   // ← empty dependency → runs ONLY on first mount
 
-  const activeClass =
-    `block py-2 px-3 text-blue-800 bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0 `;
-  const inActiveClass =
-    `block py-2 px-3 text-grey-800 bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0 `;
+
+  // Handle Submit for INPUT
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const queryTerm = event.target.search.value;
+    event.target.reset();
+    
+    return navigate(`/search?q=${queryTerm}`);
+  };
+
+  const activeClass = `block py-2 px-3 text-blue-800 bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0 `;
+  const inActiveClass = `block py-2 px-3 text-grey-800 bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0 `;
 
   return (
     <header>
@@ -76,13 +91,19 @@ export const Header = () => {
                 </svg>
               </div>
 
-              <input
-                type="text"
-                id="input-group-1"
-                className="block w-full ps-9 pe-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-2.5  shadow-xs placeholder:text-body"
-                placeholder="Search"
-                autoComplete="off"
-              />
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  id="input-group-1"
+                  className="block w-full ps-9 pe-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-xl focus:ring-brand focus:border-brand px-2.5  shadow-xs placeholder:text-body "
+                  placeholder="Search"
+                  autoComplete="off"
+                  name="search"
+                  ref={desktopRef}
+
+                  
+                />
+              </form>
             </div>
 
             <button
@@ -109,10 +130,8 @@ export const Header = () => {
               </svg>
             </button>
 
-            <button onClick={()=>setDarkMode(!darkMode)}>
-               {
-                darkMode ? (  <Moon className="ml-8" />) : (<Sun className="ml-8" />)
-                }
+            <button onClick={() => setDarkMode(!darkMode)}>
+              {darkMode ? <Moon className="ml-8" /> : <Sun className="ml-8" />}
             </button>
           </div>
 
@@ -138,13 +157,17 @@ export const Header = () => {
                   />
                 </svg>
               </div>
-              <input
-                type="text"
-                id="input-group-1"
-                className="block w-full ps-9 pe-3 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-2.5 py-2 shadow-xs placeholder:text-body"
-                placeholder="Search"
-                autoComplete="off"
-              />
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  id="input-group-1"
+                  className="block w-full ps-9 pe-3 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-2.5 py-2 shadow-xs placeholder:text-body"
+                  placeholder="Search"
+                  autoComplete="off"
+                  name="search"
+                  
+                />
+              </form>
             </div>
 
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
@@ -152,7 +175,7 @@ export const Header = () => {
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
-                    isActive ? activeClass : inActiveClass 
+                    isActive ? activeClass : inActiveClass
                   }
                   end
                 >

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 export const Footer = () => {
   return (
     <footer className="bg-neutral-primary-soft rounded-base shadow-xs border-b m-4">
-      <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+      <div className="w-full mx-auto p-4 md:flex md:items-center md:justify-between">
         <span className="text-sm text-body sm:text-center">
           @ 2030{" "}
           <Link to="/" className="hover:underline">
@@ -17,7 +17,7 @@ export const Footer = () => {
             </a>
           </li>
           <li>
-            <a href="#" target='_blank' className="hover:underline me-4 md:me-6">
+            <a href="https://www.linkedin.com/in/sudeep-kumar-mandal/" target='_blank' className="hover:underline me-4 md:me-6">
               LinkedIn
             </a>
           </li>
