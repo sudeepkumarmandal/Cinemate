@@ -1,16 +1,42 @@
-# React + Vite
+🎬 Cinemate
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Cinemate is a modern movie discovery web application that allows users to explore trending movies, search for films, view details, and manage their watchlist. The project focuses on creating a clean UI and smooth user experience using modern frontend technologies.
 
-Currently, two official plugins are available:
+The application fetches movie data from an external movie API and displays information such as movie posters, ratings, descriptions, and release dates. Movie apps commonly rely on APIs such as The Movie Database (TMDB) to retrieve film data dynamically.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Features
+🔍 Search Movies – Find movies by title instantly
+📈 Trending Movies – Discover popular movies
+🎬 Movie Details Page – View movie poster, rating, overview, and release date
+⭐ Watchlist Feature – Save movies to watch later
+🌙 Responsive UI – Works on desktop, tablet, and mobile
+⚡ Fast and Modern UI – Built with reusable components
+🛠️ Tech Stack
 
-## React Compiler
+Frontend
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+React.js
+JavaScript (ES6+)
+HTML5
+CSS3 / Tailwind CSS
 
-## Expanding the ESLint configuration
+Tools & APIs
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Movie API (TMDB or similar)
+Git & GitHub
+Vite / React build tools
+📂 Project Structure
+cinemate
+│
+├── public
+│
+├── src
+│   ├── components
+│   ├── pages
+│   ├── services
+│   ├── styles
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── package.json
+└── README.md
