@@ -26,6 +26,7 @@ Movie API (TMDB or similar)
 Git & GitHub
 Vite / React build tools
 📂 Project Structure
+```
 cinemate
 │
 ├── public
@@ -40,3 +41,4 @@ cinemate
 │
 ├── package.json
 └── README.md
+```
